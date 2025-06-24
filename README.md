@@ -10,7 +10,7 @@ A simple tool that downloads videos, transcribes what's being said, and translat
 - Translates the text to any language you want
 - Saves everything neatly in folders
 
-## Complete Setup Guide for Mac (Apple Silicon M1/M2/M3)
+## Complete Setup Guide for Mac
 
 ### Step 1: Install Python
 
