@@ -10,43 +10,53 @@ A simple tool that downloads videos, transcribes what's being said, and translat
 - Translates the text to any language you want
 - Saves everything neatly in folders
 
-## Complete Setup Guide (For Beginners)
+## Complete Setup Guide for Mac (Apple Silicon M1/M2/M3)
 
 ### Step 1: Install Python
 
-1. Go to https://www.python.org/downloads/
-2. Download Python 3.8 or newer
-3. During installation, CHECK the box that says "Add Python to PATH"
-4. Complete the installation
+Mac comes with Python, but we need to make sure you have the right version:
 
-To verify Python is installed:
-- Windows: Open Command Prompt and type `python --version`
-- Mac/Linux: Open Terminal and type `python3 --version`
+1. Open Terminal (press `Cmd + Space`, type "Terminal", press Enter)
+2. Check if Python 3 is installed by typing:
+   ```
+   python3 --version
+   ```
+3. If you see "Python 3.8" or higher, skip to Step 2
+4. If not, install Python:
+   - Go to https://www.python.org/downloads/macos/
+   - Download the latest macOS installer (make sure it says "universal2" for Apple Silicon)
+   - Run the installer
 
-### Step 2: Install FFmpeg (Required for Audio Processing)
+### Step 2: Install Homebrew (if not already installed)
 
-**Windows:**
-1. Go to https://www.gyan.dev/ffmpeg/builds/
-2. Download the "full" build
-3. Extract the zip file to `C:\ffmpeg`
-4. Add FFmpeg to your PATH:
-   - Right-click "This PC" → Properties → Advanced system settings
-   - Click "Environment Variables"
-   - Under "System variables", find "Path" and click Edit
-   - Click "New" and add `C:\ffmpeg\bin`
-   - Click OK on all windows
+Homebrew is a package manager that makes installing software easy on Mac.
 
-**Mac:**
-1. Install Homebrew first (if you don't have it):
-   - Open Terminal
-   - Paste: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-2. Install FFmpeg:
-   - In Terminal, type: `brew install ffmpeg`
+1. Open Terminal
+2. Check if Homebrew is installed:
+   ```
+   brew --version
+   ```
+3. If you see a version number, skip to Step 3
+4. If not, install Homebrew by pasting this entire command:
+   ```
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+5. Follow the instructions on screen (it may ask for your Mac password)
+6. After installation, you might see instructions to run commands starting with `echo`. Run those commands.
 
-**Linux (Ubuntu/Debian):**
-- Open Terminal and type: `sudo apt update && sudo apt install ffmpeg`
+### Step 3: Install FFmpeg
 
-### Step 3: Get a Google Gemini API Key
+1. In Terminal, type:
+   ```
+   brew install ffmpeg
+   ```
+2. Wait for installation to complete (this may take a few minutes)
+3. Verify installation:
+   ```
+   ffmpeg -version
+   ```
+
+### Step 4: Get a Google Gemini API Key
 
 1. Go to https://makersuite.google.com/app/apikey
 2. Sign in with your Google account
@@ -54,48 +64,62 @@ To verify Python is installed:
 4. Copy the API key (looks like: AIzaSy...)
 5. Save it somewhere safe - you'll need it every time you use the tool
 
-### Step 4: Download This Tool
+### Step 5: Download This Tool
 
 **Option A: Download as ZIP (Easiest)**
 1. Go to https://github.com/JahaanRawat/video_transcriber_and_translator
 2. Click the green "Code" button
 3. Click "Download ZIP"
-4. Extract the ZIP file to your Desktop or Documents folder
+4. The file will download to your Downloads folder
+5. Double-click the ZIP file to extract it
+6. Move the extracted folder to your Desktop for easy access
 
-**Option B: Using Git**
-1. Open Terminal/Command Prompt
-2. Navigate to where you want to save it (e.g., `cd Desktop`)
-3. Type: `git clone https://github.com/JahaanRawat/video_transcriber_and_translator.git`
+**Option B: Using Git (if you have it)**
+1. Open Terminal
+2. Navigate to Desktop:
+   ```
+   cd ~/Desktop
+   ```
+3. Clone the repository:
+   ```
+   git clone https://github.com/JahaanRawat/video_transcriber_and_translator.git
+   ```
 
-### Step 5: Install Required Python Packages
+### Step 6: Install Required Python Packages
 
-1. Open Terminal/Command Prompt
+1. Open Terminal
 2. Navigate to the tool's folder:
-   - Windows: `cd Desktop\video_transcriber_and_translator`
-   - Mac/Linux: `cd ~/Desktop/video_transcriber_and_translator`
-3. Install packages by typing:
    ```
-   pip install -r requirements.txt
+   cd ~/Desktop/video_transcriber_and_translator
    ```
-   (On Mac/Linux, you might need to use `pip3` instead of `pip`)
+   (If you put it somewhere else, adjust the path accordingly)
+3. Install the required packages:
+   ```
+   pip3 install -r requirements.txt
+   ```
+   If that doesn't work, try:
+   ```
+   python3 -m pip install -r requirements.txt
+   ```
 
 ## How to Use
 
-1. Open Terminal/Command Prompt
-2. Navigate to the tool's folder
+1. Open Terminal
+2. Navigate to the tool's folder:
+   ```
+   cd ~/Desktop/video_transcriber_and_translator
+   ```
 3. Run the program:
    ```
-   python main.py
+   python3 main.py
    ```
-   (On Mac/Linux: `python3 main.py`)
-
 4. Follow the prompts:
-   - **Paste your API key** when asked (it will be hidden)
-   - **Paste the video URL** (e.g., from YouTube)
-   - **Choose where to save** (press Enter for default)
-   - **Choose if you want translation** (y/n)
+   - **Paste your API key** when asked (it will be hidden as you type)
+   - **Paste the video URL** (copy from YouTube or other video sites)
+   - **Choose where to save** (press Enter for default "./output")
+   - **Choose if you want translation** (type 'y' for yes or 'n' for no)
    - **Pick a language** if translating (e.g., Spanish, French, Japanese)
-   - **Choose to keep video files** or not (y/n)
+   - **Choose to keep video files** (type 'y' or 'n')
 
 ### Example Run
 
@@ -135,54 +159,67 @@ Check the output directory: my_videos
 
 ## Where to Find Your Files
 
-After running, check the output folder you specified. You'll find:
-- `transcription.txt` - The original text from the video
-- `translation_[language].txt` - The translated version (if you chose to translate)
-- Video and audio files (if you chose to keep them)
+After running, your files will be in the output folder you specified:
+1. Open Finder
+2. Navigate to the tool's folder
+3. Look for your output folder (e.g., "my_videos" or "output")
+4. Inside you'll find:
+   - `transcription.txt` - The original text from the video
+   - `translation_[language].txt` - The translated version (if you chose to translate)
+   - Video and audio files (if you chose to keep them)
 
-## Common Problems and Solutions
+## Common Problems and Solutions (Mac Specific)
 
-**"python is not recognized" error:**
-- Make sure Python is installed and added to PATH
-- Try `python3` instead of `python`
+**"python3: command not found":**
+- Install Python from https://www.python.org/downloads/macos/
+- Make sure to download the "universal2" installer for Apple Silicon
 
-**"pip is not recognized" error:**
-- Try `python -m pip install -r requirements.txt`
-- Or `python3 -m pip install -r requirements.txt`
+**"pip3: command not found":**
+- Try: `python3 -m pip install -r requirements.txt`
+- Or install pip: `python3 -m ensurepip --upgrade`
 
-**"ffmpeg not found" error:**
-- FFmpeg is not installed or not in PATH
-- Follow the FFmpeg installation steps above carefully
+**"brew: command not found":**
+- Homebrew isn't installed. Follow Step 2 carefully
+- After installing, close and reopen Terminal
 
-**API Key errors:**
-- Make sure you copied the entire API key
-- Check that your API key is active at https://makersuite.google.com/app/apikey
+**Permission denied errors:**
+- Add `sudo` before the command: `sudo pip3 install -r requirements.txt`
+- Enter your Mac password when prompted
 
-**Video download fails:**
-- Check your internet connection
-- Make sure the video URL is correct and publicly accessible
-- Some videos may be region-restricted
+**SSL Certificate errors:**
+- Common on Mac. Try: `pip3 install --upgrade certifi`
+- Or use: `python3 -m pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt`
 
-## Tips
+## Tips for Mac Users
 
-- You can transcribe videos in any language and translate to any language
-- Longer videos take more time to process
+- Use `Cmd + Space` to quickly open Terminal
+- Drag and drop folders into Terminal to get their path
+- Use `Cmd + K` in Terminal to clear the screen
 - Your API key is personal - don't share it with others
-- The tool works with YouTube, Vimeo, and many other video platforms
+- Videos are temporarily stored in `/var/folders/` and automatically cleaned up
+
+## Quick Start (After Setup)
+
+Once everything is installed, you just need to:
+1. Open Terminal (`Cmd + Space`, type "Terminal")
+2. Type: `cd ~/Desktop/video_transcriber_and_translator`
+3. Type: `python3 main.py`
+4. Follow the prompts!
 
 ## Need More Help?
 
 If you're still having issues:
-1. Make sure you followed each step exactly
-2. Try with a short YouTube video first
-3. Check that all software is up to date
+1. Make sure you're using Terminal, not the Python app
+2. Check that you're in the right folder (`pwd` shows current folder)
+3. Try with a short YouTube video first
+4. Make sure your Mac is updated (Apple menu > About This Mac > Software Update)
 
 ## Privacy Note
 
 - Your API key is only used to connect to Google's AI service
 - Videos are temporarily downloaded and deleted after processing (unless you choose to keep them)
-- Transcriptions are only saved locally on your computer
+- All files stay on your Mac - nothing is uploaded elsewhere
 
 ---
 
-Made with ❤️ for easy video understanding
+Made with ❤️ for easy video understanding on Mac
