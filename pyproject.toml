@@ -1,0 +1,12 @@
+[project]
+name = "video-transcriber-and-translator"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "click>=8.2.1",
+    "google-generativeai>=0.8.5",
+    "rich>=14.0.0",
+    "yt-dlp>=2025.6.9",
+]
