@@ -1,0 +1,4 @@
+google-generativeai>=0.3.0
+yt-dlp>=2023.12.30
+rich>=13.7.0
+click>=8.1.7
