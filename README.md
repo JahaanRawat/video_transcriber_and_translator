@@ -222,4 +222,4 @@ If you're still having issues:
 
 ---
 
-Made with ❤️ for easy video understanding on Mac
+Made with ❤️ for my BeeBee🐝
